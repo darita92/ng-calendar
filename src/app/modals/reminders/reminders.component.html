@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{month}}/{{day.value}}/{{year}} Reminders</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container">
+    <span class="badge badge-{{reminder.color}}" *ngFor="let reminder of day.reminders">
+      {{reminder.time}} - {{reminder.title}}
+    </span>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="createReminder()">New Reminder</button>
+  <button type="button" class="btn btn-light" (click)="activeModal.close('Close click')">Close</button>
+</div>

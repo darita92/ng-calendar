@@ -1,0 +1,23 @@
+<div class="container">
+
+  <form class="form-inline">
+    <label class="lead mr-2 ml-2" for="month">Jump To: </label>
+    <select class="form-control col-sm-4" name="month" [(ngModel)]="selectedMonth" (change)="changeDate()">
+      <option *ngFor="let monthName of months; let i = index" [ngValue]="i">{{monthName}}
+      </option>
+    </select>
+
+
+    <label for="year"></label>
+    <select class="form-control col-sm-4" name="year" [(ngModel)]="selectedYear" (change)="changeDate()">
+      <option *ngFor="let year of years" [ngValue]="year">{{year}}</option>
+    </select>
+  </form>
+  <div class="form-inline">
+
+    <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Previous</button>
+
+    <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Next</button>
+  </div>
+  <br />
+</div>

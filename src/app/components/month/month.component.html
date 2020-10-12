@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="card">
+      <h3 class="card-header"> {{monthName}} - {{year}} </h3>
+      <table class="table table-bordered table-responsive-sm" id="calendar">
+          <thead>
+          <tr>
+              <th>Sun</th>
+              <th>Mon</th>
+              <th>Tue</th>
+              <th>Wed</th>
+              <th>Thu</th>
+              <th>Fri</th>
+              <th>Sat</th>
+          </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let week of monthDates; let i = index">
+              <td *ngFor="let day of week; let j = index" class="day" (click)="openReminders(day)">
+                <span>{{day.value}}</span>
+                <ng-container *ngFor="let reminder of day.reminders">
+                  <div class="row reminder">
+                    <span class="badge badge-{{reminder.color}}">{{reminder.title}}</span>
+                  </div>
+                </ng-container>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
