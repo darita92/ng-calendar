@@ -44,9 +44,6 @@ export class RemindersComponent implements OnInit {
         reminder.month = this.day.month;
         reminder.year = this.day.year;
         reminder.day = this.day.value;
-        let remindersString = localStorage.getItem('reminders');
-        const reminders = JSON.parse(remindersString) || [];
-        remindersString = JSON.stringify(reminders);
         this.weatherService.getCityWeather(response.location.address.city)
         .subscribe((forecast: any) => {
           const weather = forecast.list.filter(item => {
@@ -58,7 +55,10 @@ export class RemindersComponent implements OnInit {
           if (weather.length > 0) {
             reminder.weather = weather[0].weather[0].description;
           }
+          let remindersString = localStorage.getItem('reminders');
+          const reminders = JSON.parse(remindersString) || [];
           reminders.push(reminder);
+          remindersString = JSON.stringify(reminders);
           localStorage.setItem('reminders', remindersString);
         });
       }
