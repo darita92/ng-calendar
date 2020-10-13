@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Day } from 'src/app/interfaces/day';
 import { CalendarService } from 'src/app/services/calendar.service';
+import { WeatherService } from 'src/app/services/weather.service';
 import { NewReminderComponent } from '../new-reminder/new-reminder.component';
 
 @Component({
@@ -16,7 +17,8 @@ export class RemindersComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private calendarService: CalendarService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private weatherService: WeatherService
   ) { }
 
   ngOnInit() {
@@ -37,16 +39,28 @@ export class RemindersComponent implements OnInit {
     const modalRef = this.modalService.open(NewReminderComponent, {size: 'lg'});
     modalRef.result.then(response => {
       if (response) {
-        const reminder = response;
+        const reminder = response.reminder;
         this.day.reminders.push(reminder);
         reminder.month = this.day.month;
         reminder.year = this.day.year;
         reminder.day = this.day.value;
         let remindersString = localStorage.getItem('reminders');
         const reminders = JSON.parse(remindersString) || [];
-        reminders.push(reminder);
         remindersString = JSON.stringify(reminders);
-        localStorage.setItem('reminders', remindersString);
+        this.weatherService.getCityWeather(response.location.address.city)
+        .subscribe((forecast: any) => {
+          const weather = forecast.list.filter(item => {
+            const itemDate = new Date(item.dt_txt);
+            return itemDate.getMonth() === this.month
+              && itemDate.getFullYear() === this.year
+              && itemDate.getDay() === this.day.value;
+          });
+          if (weather.length > 0) {
+            reminder.weather = weather[0].weather[0].description;
+          }
+          reminders.push(reminder);
+          localStorage.setItem('reminders', remindersString);
+        });
       }
     });
   }

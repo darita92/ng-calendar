@@ -75,7 +75,10 @@ export class NewReminderComponent implements OnInit {
         location: controls.location.value.label,
         color: controls.color.value
       };
-      this.activeModal.close(this.reminder);
+      this.activeModal.close({
+        reminder: this.reminder,
+        location: controls.location.value
+      });
     }
   }
 

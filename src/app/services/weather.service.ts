@@ -11,7 +11,7 @@ export class WeatherService {
   constructor(private http: HttpClient) {}
 
   getCityWeather(city: string) {
-    return this.http.get(`api.openweathermap.org/data/2.5/weather`, {
+    return this.http.get(`https://api.openweathermap.org/data/2.5/forecast`, {
       params: {
         appid: environment.weatherAPIKey,
         q: city
