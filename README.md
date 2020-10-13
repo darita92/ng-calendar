@@ -7,7 +7,9 @@ Reminders are saved on localstorage.
 APIs used:
 
 - GEOCoder Autocomplete: to get address suggestion.
-- OpenWeather: To get weather forecast for reminder day.
+- OpenWeather: To get weather forecast for reminder date, forecast is only for 5 days si if not on those dates weather won't be provided.
+
+Calendar will display first 3 reminders, and show and indicator of how much more appointments are in the day.
 
 [DEMO Site](https://nifty-mestorf-ad51e0.netlify.app/)
 

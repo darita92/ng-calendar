@@ -15,7 +15,6 @@ export class LocationService {
     if (query === '') {
       return of([]);
     }
-    console.log('QUERY:', query)
     return this.http
       .get('https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json',
       {
@@ -25,7 +24,6 @@ export class LocationService {
         }
       }).pipe(
         map((response: any) => {
-          console.log('RESPONSE:', response)
           return response.suggestions;
         })
       );
