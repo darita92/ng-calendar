@@ -1,6 +1,13 @@
 # Simple NG Calendar
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+Simple Calendar to Navigate between months and set reminders.
+
+Reminders are saved on localstorage.
+
+APIs used:
+
+- GEOCoder Autocomplete: to get address suggestion.
+- OpenWeather: To get weather forecast for reminder day.
 
 ## Development server
 

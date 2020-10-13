@@ -8,7 +8,7 @@
   <div class="container">
     <span class="badge badge-{{reminder.color}}" *ngFor="let reminder of day.reminders">
       {{reminder.time}} - {{reminder.title}}<br>
-      Weather: {{reminder.weather}}
+      <span *ngIf="reminder.weather">Weather: {{reminder.weather}}</span>
     </span>
   </div>
 </div>

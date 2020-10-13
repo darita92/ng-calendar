@@ -27,6 +27,7 @@
         <label for="reminderLocation">Location</label>
         <input type="text" class="form-control" id="reminderLocation" formControlName="location" [(ngModel)]="location"
           [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter">
+        <small class="form-text text-muted">Start Typing to get address suggestion</small>
         <small class="text-danger" *ngIf="form.get('location').hasError('required')">
           This field is required.
         </small>
