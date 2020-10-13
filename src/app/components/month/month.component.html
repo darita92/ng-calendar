@@ -21,7 +21,7 @@
                 <div *ngIf="day.reminders">
                   <ng-container *ngFor="let reminder of day.reminders | slice:0:3">
                     <div class="row reminder">
-                      <span class="badge badge-{{reminder.color}}">{{reminder.title}}</span>
+                      <span class="badge badge-{{reminder.color}}">{{reminder.time}} - {{reminder.title}}</span>
                     </div>
                   </ng-container>
                   <div class="row reminder" *ngIf="day.reminders.length > 3">
