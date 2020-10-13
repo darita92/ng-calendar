@@ -1,15 +1,22 @@
 import { TestBed, async } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { MonthComponent } from './components/month/month.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        FormsModule,
+        ReactiveFormsModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        MonthComponent,
+        NavigationComponent
       ],
     }).compileComponents();
   }));
@@ -24,12 +31,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('jobsity-calendar');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to jobsity-calendar!');
   });
 });

@@ -18,11 +18,16 @@
             <tr *ngFor="let week of monthDates; let i = index">
               <td *ngFor="let day of week; let j = index" class="day" (click)="openReminders(day)">
                 <span>{{day.value}}</span>
-                <ng-container *ngFor="let reminder of day.reminders">
-                  <div class="row reminder">
-                    <span class="badge badge-{{reminder.color}}">{{reminder.title}}</span>
+                <div *ngIf="day.reminders">
+                  <ng-container *ngFor="let reminder of day.reminders | slice:0:3">
+                    <div class="row reminder">
+                      <span class="badge badge-{{reminder.color}}">{{reminder.title}}</span>
+                    </div>
+                  </ng-container>
+                  <div class="row reminder" *ngIf="day.reminders.length > 3">
+                    <span class="badge badge-info">+{{day.reminders.length - 3}}</span>
                   </div>
-                </ng-container>
+                </div>
               </td>
             </tr>
           </tbody>

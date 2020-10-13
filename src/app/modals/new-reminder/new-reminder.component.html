@@ -6,25 +6,34 @@
 </div>
 <div class="modal-body">
   <div class="container">
-    <form name="reminder">
+    <form name="reminder" [formGroup]="form">
       <div class="form-group">
         <label for="reminderTitle">Title</label>
-        <input type="text" class="form-control" id="reminderTitle" aria-describedby="titleHelp" name="title"
+        <input type="text" class="form-control" id="reminderTitle" aria-describedby="titleHelp" formControlName="title"
           [(ngModel)]="title">
         <small id="titleHelp" class="form-text text-muted">Max 30 characters.</small>
+        <small class="text-danger" *ngIf="form.get('title').hasError('required')">
+          This field is required.
+        </small>
+        <small class="text-danger" *ngIf="form.get('title').hasError('maxlength')">
+          Title can only be 30 characters.
+        </small>
       </div>
       <div class="form-group">
         <label for="reminderTime">Time</label>
-        <ngb-timepicker [(ngModel)]="time" name="time"></ngb-timepicker>
+        <ngb-timepicker [(ngModel)]="time" formControlName="time"></ngb-timepicker>
       </div>
       <div class="form-group">
         <label for="reminderLocation">Location</label>
-        <input type="text" class="form-control" id="reminderLocation" name="location" [(ngModel)]="location"
+        <input type="text" class="form-control" id="reminderLocation" formControlName="location" [(ngModel)]="location"
           [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter">
+        <small class="text-danger" *ngIf="form.get('location').hasError('required')">
+          This field is required.
+        </small>
       </div>
       <div class="form-group">
         <label for="reminderColor">Color</label>
-        <select class="custom-select" name="color" [(ngModel)]="color">
+        <select class="custom-select" formControlName="color" [(ngModel)]="color">
           <option value="primary" selected>Blue</option>
           <option value="secondary">Grey</option>
           <option value="success">Green</option>
@@ -32,6 +41,9 @@
           <option value="warning">Yellow</option>
           <option value="dark">Black</option>
         </select>
+        <small class="text-danger" *ngIf="form.get('color').hasError('required')">
+          This field is required.
+        </small>
       </div>
       <button type="submit" class="btn btn-success" (click)="createReminder()">Create</button>
     </form>

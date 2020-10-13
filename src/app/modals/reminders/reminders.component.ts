@@ -22,6 +22,15 @@ export class RemindersComponent implements OnInit {
   ngOnInit() {
     this.month = this.calendarService.month;
     this.year = this.calendarService.year;
+    this.day.reminders = this.day.reminders.sort((a, b) => {
+      let dateA = `${this.year}-${this.month}-${this.day.value}`;
+      dateA = `${dateA} ${a.time}`;
+      const timeA = new Date(dateA);
+      let dateB = `${this.year}-${this.month}-${this.day.value}`;
+      dateB = `${dateB} ${b.time}`;
+      const timeB = new Date(dateB);
+      return timeA.getTime() - timeB.getTime();
+    });
   }
 
   createReminder() {

@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgbActiveModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { RemindersComponent } from './reminders.component';
 
@@ -8,7 +9,9 @@ describe('RemindersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RemindersComponent ]
+      declarations: [ RemindersComponent ],
+      imports: [NgbModalModule],
+      providers: [NgbActiveModal]
     })
     .compileComponents();
   }));
@@ -16,6 +19,7 @@ describe('RemindersComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(RemindersComponent);
     component = fixture.componentInstance;
+    component.day = {reminders: [], value: 1, month: 1, year: 1};
     fixture.detectChanges();
   });
 
