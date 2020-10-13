@@ -9,6 +9,8 @@ APIs used:
 - GEOCoder Autocomplete: to get address suggestion.
 - OpenWeather: To get weather forecast for reminder day.
 
+[DEMO Site](https://nifty-mestorf-ad51e0.netlify.app/)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
